@@ -42,6 +42,7 @@ class CreateUserMutation extends Mutation
         $user = new User();
         $user->fill($args);
         $user->password = bcrypt($args['password']);
+        $user->save();
         return $user;
 
     }

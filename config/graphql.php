@@ -124,7 +124,8 @@ return [
     // ]
     //
     'types' => [
-        \App\GraphQL\Type\UserType::class
+
+        'User' => \App\GraphQL\Type\UserType::class,
 
     ],
 

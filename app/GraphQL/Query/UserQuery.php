@@ -7,11 +7,12 @@ use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use GraphQL;
 use App\User;
+
 class UserQuery extends Query
 {
     protected $attributes = [
-        'name' => 'users',
-        'description' => 'users query'
+        'name' => 'User',
+        'description' => 'user  query'
     ];
 
     public function type()
@@ -23,8 +24,8 @@ class UserQuery extends Query
     public function args()
     {
         return [
-            'id' => ['name' => 'id', 'type' => Type::string()],
-            'email' => ['name' => 'email', 'type' => Type::string()]
+            'id' => ['type' => (Type::int())]
+
         ];
     }
 
@@ -32,7 +33,7 @@ class UserQuery extends Query
     {
         if(isset($args['id']))
         {
-            return User::where('id' , $args['id'])->get();
+            return User::find($args['id']);
         }
         else if(isset($args['email']))
         {
@@ -41,6 +42,7 @@ class UserQuery extends Query
         else
         {
             return User::all();
-        };
+
+        }
     }
 }
